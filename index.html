@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sajad Gallery</title>
+    <style>
+        /* تنظیمات کلی صفحه */
+        body {
+            background-color: #1a1a1e; /* رنگ پس‌زمینه تیره */
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* استایل هدر */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin: 0 0 10px 0;
+            color: #ffffff;
+        }
+
+        .header p {
+            font-size: 1rem;
+            color: #b0b0b0;
+            margin: 0;
+        }
+
+        /* شبکه‌ی نمایش تصاویر */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* دو ستون */
+            gap: 20px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        /* استایل هر کارت تصویر */
+        .card {
+            background-color: #24242b; /* رنگ پس‌زمینه کارت */
+            border-radius: 12px;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        /* استایل تصاویر */
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            display: block;
+            background-color: #333; /* رنگ پس‌زمینه موقت اگر عکس لود نشد */
+        }
+
+        /* بخش پایین کارت (متن‌ها) */
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            padding: 0 5px;
+            font-size: 0.9rem;
+            color: #b0b0b0;
+        }
+
+        /* استایل متن مخفی شده */
+        .reveal-text {
+            color: #b0b0b0;
+            transition: color 0.3s;
+            text-align: right;
+            max-width: 60%;
+        }
+
+        /* وقتی متن نمایش داده می‌شود، رنگ آن تغییر می‌کند */
+        .reveal-text.revealed {
+            color: #4CAF50; /* رنگ سبز برای متن نمایش داده شده */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>sajad</h1>
+        <p>Tap a picture to reveal its name.</p>
+    </div>
+
+    <div class="gallery">
+        <!-- تصویر 1: زمین -->
+        <div class="card" onclick="revealName(this)">
+            <!-- نام فایل عکس زمین -->
+            <img src="earth.jpg" alt="Earth">
+            <div class="card-footer">
+                <span class="label">Picture 1</span>
+                <span class="reveal-text" data-name="We live on Earth">Click to reveal</span>
+            </div>
+        </div>
+
+        <!-- تصویر 2: ببر -->
+        <div class="card" onclick="revealName(this)">
+            <!-- نام فایل عکس ببر -->
+            <img src="tiger.jpg" alt="Tiger">
+            <div class="card-footer">
+                <span class="label">Picture 2</span>
+                <span class="reveal-text" data-name="A tiger is a wild animal">Click to reveal</span>
+            </div>
+        </div>
+
+        <!-- تصویر 3: جنگل -->
+        <div class="card" onclick="revealName(this)">
+            <!-- نام فایل عکس جنگل -->
+            <img src="forest.jpg" alt="Forest">
+            <div class="card-footer">
+                <span class="label">Picture 3</span>
+                <span class="reveal-text" data-name="I went to Golestan Forest last year">Click to reveal</span>
+            </div>
+        </div>
+
+        <!-- تصویر 4: چوب‌بر -->
+        <div class="card" onclick="revealName(this)">
+            <!-- نام فایل عکس چوب‌بر -->
+            <img src="wood.jpg" alt="Woodcutter">
+            <div class="card-footer">
+                <span class="label">Picture 4</span>
+                <span class="reveal-text" data-name="They are destroying the jungle">Click to reveal</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // تابعی که با کلیک روی هر کارت اجرا می‌شود
+        function revealName(cardElement) {
+            const textElement = cardElement.querySelector('.reveal-text');
+            
+            if (!textElement.classList.contains('revealed')) {
+                const realName = textElement.getAttribute('data-name');
+                textElement.textContent = realName;
+                textElement.classList.add('revealed');
+            }
+        }
+    </script>
+
+</body>
+</html>
