@@ -144,6 +144,11 @@
             </div>
         </div>
     </div>
+    
+  <audio id="audio-1" src="earth.mp3"></audio>
+    <audio id="audio-2" src="tiger.mp3"></audio>
+    <audio id="audio-3" src="forest.mp3"></audio>
+    <audio id="audio-4" src="wood.mp3"></audio>
 
     <script>
         // تابعی که با کلیک روی هر کارت اجرا می‌شود
@@ -154,6 +159,18 @@
                 const realName = textElement.getAttribute('data-name');
                 textElement.textContent = realName;
                 textElement.classList.add('revealed');
+                          // Play Sound
+            if (audioElement) {
+                audioElement.currentTime = 0; 
+                audioElement.play().catch(e => console.log("Audio error:", e));
+            }
+
+            // Reveal Text
+            if (!textElement.classList.contains('revealed')) {
+                textElement.textContent = textElement.getAttribute('data-name');
+                textElement.classList.add('revealed');
+            }
+        }
             }
         }
     </script>
